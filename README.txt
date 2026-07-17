@@ -2,7 +2,7 @@ myELIZA
 =======
 
 Group Members:
-- [Your Name]
+- Tobi Akere
 
 Description:
 A command-line C++ recreation of ELIZA. The program plays the role of a
