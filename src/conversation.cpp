@@ -1,3 +1,7 @@
+// conversation.cpp -- the input loop and the only file that sequences things:
+// normalize, check for "bye", check for a repeat, then walk the category
+// registry until one matches, falling back if none does.
+
 #include "conversation.h"
 
 #include <iostream>

@@ -1,3 +1,5 @@
+// text_utils.h -- string helpers shared by every category.
+
 #ifndef TEXT_UTILS_H
 #define TEXT_UTILS_H
 

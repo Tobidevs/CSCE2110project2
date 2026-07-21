@@ -1,3 +1,6 @@
+// financial.cpp -- money: affording things, debt, jobs, saving, spending.
+// Third in the dispatch order.
+
 #include "financial.h"
 
 #include <regex>
@@ -6,7 +9,9 @@
 
 bool financialMatches(const std::string& input) {
     static const std::regex keywordPattern(
-        R"(\b(money|debt|owe\w*|loan\w*|save|saving\w*|savings|invest\w*|bankrupt\w*|broke|afford\w*|rent|bills?|paycheck|salary|income|budget\w*|spend\w*|spent|expensive|cost\w*|credit|mortgage|job|laid off)\b)",
+        // "spend" is deliberately not matched bare: "I spend too much time on
+        // my phone" belongs to technology, and "I spend money" hits "money"
+        R"(\b(money|debt|owe\w*|loan\w*|save|saving\w*|savings|invest\w*|bankrupt\w*|broke|afford\w*|rent|bills?|paycheck|salary|income|budget\w*|spent|spending|expensive|cost\w*|credit|mortgage|job|laid off|fired)\b)",
         std::regex::icase);
     return std::regex_search(input, keywordPattern);
 }

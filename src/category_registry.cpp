@@ -1,3 +1,6 @@
+// category_registry.cpp -- builds the priority-ordered table of categories.
+// The one file allowed to include every component's header.
+
 #include "category_registry.h"
 
 #include "concern.h"

@@ -94,13 +94,29 @@ another's, which matters for merging component branches independently.
 
 ## Current status
 
-Five of the eight components are implemented: `generic_verbs` (Milestone
-component #1, 9 regexes), `concern` (7), `relationships` (8), `financial`
-(9), and `wellbeing` (8) — 41 total, built with `regex_match`,
-`regex_search`, and `regex_replace`. `fillTemplate` moved from a local helper
-in `generic_verbs.cpp` to `text_utils` since every component needs it; it
-escapes `$` in captured text so dollar amounts survive the `regex_replace`
-substitution. The remaining 3 components (`education`, `entertainment`,
-`technology`) are still stubbed; finishing them clears the 50-regex minimum.
-Program compiles and runs end-to-end: greeting, per-category responses,
-fallback, repeat detection, and "bye" exit all work.
+All eight components are implemented, with 72 distinct regexes total against
+the PRD's 50 minimum: `generic_verbs` (10), `concern` (7), `relationships`
+(8), `financial` (10), `wellbeing` (9), `education` (10), `entertainment`
+(9), and `technology` (9). All three required regex functions are used —
+`regex_match` for whole-line answers, `regex_search` for phrases, and
+`regex_replace` (via `text_utils::fillTemplate`) for substitution.
+`fillTemplate` escapes `$` in captured text so dollar amounts survive the
+substitution.
+
+Two ordering hazards showed up once the later components landed and are
+worth remembering. First, `matches()` gates `respond()`, so any pattern in
+`respond()` needs a corresponding trigger word in the keyword regex or it
+can never fire — several education patterns were dead until "passed,"
+"struggling," "understand," and "dropped" were added. Second, once a
+component claims a keyword it owns every phrasing that keyword appears in:
+`financial` matching a bare "spend" was hijacking "I spend too much time on
+my phone," and `technology` owning the device nouns meant it had to answer
+"I have a new laptop" itself rather than leaving it to `generic_verbs`.
+
+The keyword `passed(?!\s+away)` in `education` is deliberate — without the
+lookahead, "my grandmother passed away" would have been answered as an exam
+result.
+
+Program compiles clean under `-Wall -Wextra` and runs end-to-end: greeting,
+all eight categories, fallback for unparseable input, repeat detection, and
+"bye" exit all work.

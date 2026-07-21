@@ -1,3 +1,5 @@
+// text_utils.cpp -- string helpers shared by every category.
+
 #include "text_utils.h"
 
 #include <algorithm>

@@ -1,3 +1,7 @@
+// generic_verbs.cpp -- common verbs: have, purchase, travel, know, learn.
+// Last in the dispatch order: the widest net, so it only catches what no
+// other category claimed.
+
 #include "generic_verbs.h"
 
 #include <regex>

@@ -1,3 +1,6 @@
+// response_tracker.h -- hash table of normalized input to how many times it
+// has been said this session.
+
 #ifndef RESPONSE_TRACKER_H
 #define RESPONSE_TRACKER_H
 

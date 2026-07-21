@@ -10,9 +10,11 @@ Two shared utilities support every category. `text_utils` normalizes input and r
 
 ## Data structures
 
-The `Category` struct holds a name and two function pointers, `matches` and `respond`. `category_registry.cpp` builds a `vector<Category>` from all eight categories in priority order.
+The `Category` struct holds a name and two function pointers, `matches` and `respond`. `category_registry.cpp` builds a `vector<Category>` from all eight categories in priority order — a dynamic array rather than a class hierarchy, since the only operation ever performed on it is walking it front to back until something matches. Adding a ninth category later would be one more struct literal, not a new subclass.
 
-`ResponseTracker` is an `unordered_map<string, int>` keyed on normalized input, counting how many times each line has been said.
+`ResponseTracker` wraps an `unordered_map<string, int>`, a hash table keyed on the normalized input string and storing how many times that line has been said. A hash table fits because the only question ever asked of it is whether an exact string has been seen before, which is an average O(1) lookup. Nothing about the order of past answers is needed, so a list or tree would cost more without buying anything.
+
+Across the eight components the program defines 72 distinct regular expressions, built with `regex_match` for whole-line answers, `regex_search` for phrases appearing anywhere in a sentence, and `regex_replace` for substituting captured text into response templates.
 
 ## System diagram
 
@@ -27,6 +29,6 @@ The `Category` struct holds a name and two function pointers, `matches` and `res
 - [Relationships](relationships)
 - [Financial](financial)
 - [Wellbeing](wellbeing)
-- Education (in progress)
-- Entertainment (in progress)
-- Technology & Social Media (in progress)
+- [Education](education)
+- [Entertainment](entertainment)
+- [Technology & Social Media](technology)

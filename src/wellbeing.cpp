@@ -1,3 +1,6 @@
+// wellbeing.cpp -- health habits: sleep, exercise, stress, diet, illness.
+// Fourth in the dispatch order.
+
 #include "wellbeing.h"
 
 #include <regex>

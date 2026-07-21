@@ -1,3 +1,4 @@
 *.o
 myeliza
+.DS_Store
 

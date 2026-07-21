@@ -1,3 +1,6 @@
+// relationships.cpp -- love, partners, breakups, marriage.
+// Second in the dispatch order, ahead of everything except concern.
+
 #include "relationships.h"
 
 #include <regex>
@@ -6,7 +9,9 @@
 
 bool relationshipsMatches(const std::string& input) {
     static const std::regex keywordPattern(
-        R"(\b(love\w*|spouse|wife|husband|girlfriend|boyfriend|partner|marr\w*|divorc\w*|break\s*up|broke\s+up|dating)\b)",
+        // bare "miss" only: "missed"/"missing" would wrongly claim lines like
+        // "I missed class" that the respond patterns can't answer
+        R"(\b(love\w*|spouse|wife|husband|girlfriend|boyfriend|partner|marr\w*|divorc\w*|break\s*up|broke\s+up|dating|miss)\b)",
         std::regex::icase);
     return std::regex_search(input, keywordPattern);
 }

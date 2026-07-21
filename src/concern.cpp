@@ -1,3 +1,7 @@
+// concern.cpp -- crisis-adjacent language: hate, self-harm, hopelessness.
+// First in the dispatch order so these lines are never claimed by a broader
+// category. The most severe patterns return a crisis-line response.
+
 #include "concern.h"
 
 #include <regex>

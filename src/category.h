@@ -1,3 +1,6 @@
+// category.h -- the record each topic component is registered as: a name plus
+// its matches/respond function pointers.
+
 #ifndef CATEGORY_H
 #define CATEGORY_H
 
