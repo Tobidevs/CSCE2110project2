@@ -94,11 +94,13 @@ another's, which matters for merging component branches independently.
 
 ## Current status
 
-`generic_verbs` (Milestone component #1), `concern`, and `relationships` are
-implemented — 9, 7, and 8 regexes respectively, built with `regex_match`,
+Five of the eight components are implemented: `generic_verbs` (Milestone
+component #1, 9 regexes), `concern` (7), `relationships` (8), `financial`
+(9), and `wellbeing` (8) — 41 total, built with `regex_match`,
 `regex_search`, and `regex_replace`. `fillTemplate` moved from a local helper
-in `generic_verbs.cpp` to `text_utils` since all three components need it.
-The remaining 5 components (`financial`, `wellbeing`, `education`,
-`entertainment`, `technology`) are still stubbed. Program compiles and runs
-end-to-end: greeting, per-category responses, fallback, repeat detection,
-and "bye" exit all work.
+in `generic_verbs.cpp` to `text_utils` since every component needs it; it
+escapes `$` in captured text so dollar amounts survive the `regex_replace`
+substitution. The remaining 3 components (`education`, `entertainment`,
+`technology`) are still stubbed; finishing them clears the 50-regex minimum.
+Program compiles and runs end-to-end: greeting, per-category responses,
+fallback, repeat detection, and "bye" exit all work.

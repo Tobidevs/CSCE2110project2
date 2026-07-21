@@ -52,7 +52,17 @@ std::string reflect(const std::string& input) {
 
 std::string fillTemplate(const std::string& tmpl, const std::string& placeholder,
                           const std::string& value) {
-    return std::regex_replace(tmpl, std::regex(placeholder), value);
+    // regex_replace treats $ in the replacement as a group reference, so a
+    // captured dollar amount like "$50" would come back mangled
+    std::string escaped;
+    for (char c : value) {
+        if (c == '$') {
+            escaped += "$$";
+        } else {
+            escaped += c;
+        }
+    }
+    return std::regex_replace(tmpl, std::regex(placeholder), escaped);
 }
 
 }
