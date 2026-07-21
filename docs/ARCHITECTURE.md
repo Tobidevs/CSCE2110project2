@@ -94,11 +94,11 @@ another's, which matters for merging component branches independently.
 
 ## Current status
 
-`generic_verbs` (Milestone component #1) is fully implemented: 9 regexes
-covering have/don't-have, purchase intent/completion, travel, know/don't-know,
-and learn, built with `regex_match`, `regex_search`, and `regex_replace`. The
-remaining 7 components are still stubbed (`matches()` returns `false`,
-`respond()` returns `""`). The whole program compiles and runs end-to-end:
-greeting, generic_verbs responses, per-line fallback, repeat detection, and
-"bye" exit all work. Filling in the remaining components is scheduled per the
-project timeline (Weeks 5-8).
+`generic_verbs` (Milestone component #1), `concern`, and `relationships` are
+implemented — 9, 7, and 8 regexes respectively, built with `regex_match`,
+`regex_search`, and `regex_replace`. `fillTemplate` moved from a local helper
+in `generic_verbs.cpp` to `text_utils` since all three components need it.
+The remaining 5 components (`financial`, `wellbeing`, `education`,
+`entertainment`, `technology`) are still stubbed. Program compiles and runs
+end-to-end: greeting, per-category responses, fallback, repeat detection,
+and "bye" exit all work.

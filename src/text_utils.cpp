@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <cctype>
+#include <regex>
 #include <sstream>
 #include <unordered_map>
 
@@ -47,6 +48,11 @@ std::string reflect(const std::string& input) {
         result += (it != swapMap.end()) ? it->second : word;
     }
     return result;
+}
+
+std::string fillTemplate(const std::string& tmpl, const std::string& placeholder,
+                          const std::string& value) {
+    return std::regex_replace(tmpl, std::regex(placeholder), value);
 }
 
 }
